@@ -74,95 +74,96 @@ part of '../flutter_background_geolocation.dart';
 /// }
 /// ```
 ///
-class HeadlessEvent {
-  /// The name of the [Event]
-  ///
-  late String name;
+/// Commented the code bellow for IOS only setup- Android implementation Removed
+// class HeadlessEvent {
+//   /// The name of the [Event]
+//   ///
+//   late String name;
 
-  /// The corresponding event-object.
-  ///
-  /// This `event` object can be cast according to those provided by [BackgroundGeolocation]'s primary event-listener'
-  ///
-  /// | Event `name`                 | `event` Class                         |
-  /// |------------------------------|---------------------------------------|
-  /// | [Event.BOOT]                 | [State]                               |
-  /// | [Event.TERMINATE]            | [State]                               |
-  /// | [Event.LOCATION]             | [Location]                            |
-  /// | [Event.MOTIONCHANGE]         | [Location]                            |
-  /// | [Event.HTTP]                 | [HttpEvent]                           |
-  /// | [Event.ACTIVITYCHANGE]       | [ActivityChangeEvent]                 |
-  /// | [Event.PROVIDERCHANGE]       | [ProviderChangeEvent]                 |
-  /// | [Event.HEARTBEAT]            | [HeartbeatEvent]                      |
-  /// | [Event.GEOFENCE]             | [GeofenceEvent]                       |
-  /// | [Event.GEOFENCESCHANGE]      | [GeofencesChangeEvent]                |
-  /// | [Event.SCHEDULE]             | [State]                               |
-  /// | [Event.CONNECTIVITYCHANGE]   | [ConnectivityChangeEvent]             |
-  /// | [Event.POWERSAVECHANGE]      | `bool enabled`                        |
-  /// | [Event.ENABLEDCHANGE]        | `bool enabled`                        |
-  /// | [Event.NOTIFICATIONACTION]   | `String buttonId`                     |
-  ///
-  dynamic event;
+//   /// The corresponding event-object.
+//   ///
+//   /// This `event` object can be cast according to those provided by [BackgroundGeolocation]'s primary event-listener'
+//   ///
+//   /// | Event `name`                 | `event` Class                         |
+//   /// |------------------------------|---------------------------------------|
+//   /// | [Event.BOOT]                 | [State]                               |
+//   /// | [Event.TERMINATE]            | [State]                               |
+//   /// | [Event.LOCATION]             | [Location]                            |
+//   /// | [Event.MOTIONCHANGE]         | [Location]                            |
+//   /// | [Event.HTTP]                 | [HttpEvent]                           |
+//   /// | [Event.ACTIVITYCHANGE]       | [ActivityChangeEvent]                 |
+//   /// | [Event.PROVIDERCHANGE]       | [ProviderChangeEvent]                 |
+//   /// | [Event.HEARTBEAT]            | [HeartbeatEvent]                      |
+//   /// | [Event.GEOFENCE]             | [GeofenceEvent]                       |
+//   /// | [Event.GEOFENCESCHANGE]      | [GeofencesChangeEvent]                |
+//   /// | [Event.SCHEDULE]             | [State]                               |
+//   /// | [Event.CONNECTIVITYCHANGE]   | [ConnectivityChangeEvent]             |
+//   /// | [Event.POWERSAVECHANGE]      | `bool enabled`                        |
+//   /// | [Event.ENABLEDCHANGE]        | `bool enabled`                        |
+//   /// | [Event.NOTIFICATIONACTION]   | `String buttonId`                     |
+//   ///
+//   dynamic event;
 
-  HeadlessEvent(String name, dynamic params) {
-    this.name = name;
+//   HeadlessEvent(String name, dynamic params) {
+//     this.name = name;
 
-    try {
-      switch (name) {
-        case Event.TERMINATE:
-        case Event.SCHEDULE:
-        case Event.BOOT:
-          event = new State(params);
-          break;
-        case Event.LOCATION:
-          event = new Location(params);
-          break;
-        case Event.MOTIONCHANGE:
-          event = new Location(params['location']);
-          break;
-        case Event.ACTIVITYCHANGE:
-          event =
-              new ActivityChangeEvent(params['activity'], params['confidence']);
-          break;
-        case Event.GEOFENCE:
-          event = new GeofenceEvent(params);
-          break;
-        case Event.GEOFENCESCHANGE:
-          event = new GeofencesChangeEvent(params['on'], params['off']);
-          break;
-        case Event.HEARTBEAT:
-          event = new HeartbeatEvent(params);
-          break;
-        case Event.HTTP:
-          event = new HttpEvent(params);
-          break;
-        case Event.PROVIDERCHANGE:
-          event = new ProviderChangeEvent(params);
-          break;
-        case Event.CONNECTIVITYCHANGE:
-          event = new ConnectivityChangeEvent(params['connected']);
-          break;
-        case Event.ENABLEDCHANGE:
-          event = params;
-          break;
-        case Event.POWERSAVECHANGE:
-          event = params;
-          break;
-        case Event.AUTHORIZATION:
-          event = new AuthorizationEvent(params);
-          break;
-        case Event.NOTIFICATIONACTION:
-          event = params;
-          break;
-      }
-    } catch (e, stacktrace) {
-      print('[HeadlessEvent] ‼️ ERROR DECODING EVENT $name: $e');
-      print(params.toString());
-      print(stacktrace);
-    }
-  }
+//     try {
+//       switch (name) {
+//         case Event.TERMINATE:
+//         case Event.SCHEDULE:
+//         case Event.BOOT:
+//           event = new State(params);
+//           break;
+//         case Event.LOCATION:
+//           event = new Location(params);
+//           break;
+//         case Event.MOTIONCHANGE:
+//           event = new Location(params['location']);
+//           break;
+//         case Event.ACTIVITYCHANGE:
+//           event =
+//               new ActivityChangeEvent(params['activity'], params['confidence']);
+//           break;
+//         case Event.GEOFENCE:
+//           event = new GeofenceEvent(params);
+//           break;
+//         case Event.GEOFENCESCHANGE:
+//           event = new GeofencesChangeEvent(params['on'], params['off']);
+//           break;
+//         case Event.HEARTBEAT:
+//           event = new HeartbeatEvent(params);
+//           break;
+//         case Event.HTTP:
+//           event = new HttpEvent(params);
+//           break;
+//         case Event.PROVIDERCHANGE:
+//           event = new ProviderChangeEvent(params);
+//           break;
+//         case Event.CONNECTIVITYCHANGE:
+//           event = new ConnectivityChangeEvent(params['connected']);
+//           break;
+//         case Event.ENABLEDCHANGE:
+//           event = params;
+//           break;
+//         case Event.POWERSAVECHANGE:
+//           event = params;
+//           break;
+//         case Event.AUTHORIZATION:
+//           event = new AuthorizationEvent(params);
+//           break;
+//         case Event.NOTIFICATIONACTION:
+//           event = params;
+//           break;
+//       }
+//     } catch (e, stacktrace) {
+//       print('[HeadlessEvent] ‼️ ERROR DECODING EVENT $name: $e');
+//       print(params.toString());
+//       print(stacktrace);
+//     }
+//   }
 
-  /// String representation of `HeadlessEvent` for `print` to logs.
-  String toString() {
-    return '[HeadlessEvent name: $name, event: $event]';
-  }
-}
+//   /// String representation of `HeadlessEvent` for `print` to logs.
+//   String toString() {
+//     return '[HeadlessEvent name: $name, event: $event]';
+//   }
+// }

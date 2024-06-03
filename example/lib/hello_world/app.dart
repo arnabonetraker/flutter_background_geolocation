@@ -111,7 +111,8 @@ class _HelloWorldPageState extends State<HelloWorldPage> {
                 refreshPayload: {'refresh_token': '{refreshToken}'}),
             stopOnTerminate: false,
             startOnBoot: true,
-            enableHeadless: true))
+            // enableHeadless: true
+            ))
         .then((bg.State state) {
       print("[ready] ${state.toMap()}");
       setState(() {

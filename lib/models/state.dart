@@ -143,7 +143,8 @@ class State extends Config {
             triggerActivities: data['triggerActivities'],
             motionTriggerDelay: data['motionTriggerDelay'],
             // Application Options
-            enableHeadless: data['enableHeadless'],
+            // Commented the code bellow for IOS only setup- Android implementation Removed
+            // enableHeadless: data['enableHeadless'],
             foregroundService: data['foregroundService'],
             forceReloadOnLocationChange: data['forceReloadOnLocationChange'],
             forceReloadOnMotionChange: data['forceReloadOnMotionChange'],

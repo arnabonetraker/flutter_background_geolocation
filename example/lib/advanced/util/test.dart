@@ -408,7 +408,7 @@ class Test {
         motionTriggerDelay: 30000,
         stopOnTerminate: false,
         startOnBoot: true,
-        enableHeadless: true,
+        // enableHeadless: true,
         heartbeatInterval: -1));
 
     try {

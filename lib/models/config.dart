@@ -1856,7 +1856,7 @@ class Config {
   /// }
   /// ```
   ///
-  bool? enableHeadless;
+  // bool? enableHeadless;
 
   /// __`[Android only]`__ Configure the plugin service to run as a more robust "Foreground Service".
   ///
@@ -2161,7 +2161,7 @@ class Config {
       this.triggerActivities,
       this.motionTriggerDelay,
       // Application Options
-      this.enableHeadless,
+      // this.enableHeadless,
       this.foregroundService,
       this.forceReloadOnLocationChange,
       this.forceReloadOnMotionChange,
@@ -2411,9 +2411,9 @@ class Config {
       config['geofenceModeHighAccuracy'] = geofenceModeHighAccuracy;
     }
     // Application Options
-    if (enableHeadless != null) {
-      config['enableHeadless'] = enableHeadless;
-    }
+    // if (enableHeadless != null) {
+    //   config['enableHeadless'] = enableHeadless;
+    // }
     if (foregroundService != null) {
       config['foregroundService'] = foregroundService;
     }

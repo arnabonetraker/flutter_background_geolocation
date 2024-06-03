@@ -1668,26 +1668,27 @@ class BackgroundGeolocation {
   ///
   /// ```
   ///
-  static Future<bool> registerHeadlessTask(
-      void Function(HeadlessEvent) callback) async {
-    Completer completer = Completer<bool>();
+  /// Commented the code bellow for IOS only setup- Android implementation Removed
+  // static Future<bool> registerHeadlessTask(
+  //     void Function(HeadlessEvent) callback) async {
+  //   Completer completer = Completer<bool>();
 
-    // Two callbacks:  the provided headless-task + _headlessRegistrationCallback
-    List<int> args = [
-      PluginUtilities.getCallbackHandle(_headlessCallbackDispatcher)!
-          .toRawHandle(),
-      PluginUtilities.getCallbackHandle(callback)!.toRawHandle()
-    ];
-    _methodChannel
-        .invokeMethod<bool>('registerHeadlessTask', args)
-        .then((bool? success) {
-      completer.complete(true);
-    }).catchError((error) {
-      print('[BackgroundGeolocation registerHeadlessTask] ‼️ $error');
-      completer.complete(false);
-    });
-    return completer.future as FutureOr<bool>;
-  }
+  //   // Two callbacks:  the provided headless-task + _headlessRegistrationCallback
+  //   List<int> args = [
+  //     PluginUtilities.getCallbackHandle(_headlessCallbackDispatcher)!
+  //         .toRawHandle(),
+  //     PluginUtilities.getCallbackHandle(callback)!.toRawHandle()
+  //   ];
+  //   _methodChannel
+  //       .invokeMethod<bool>('registerHeadlessTask', args)
+  //       .then((bool? success) {
+  //     completer.complete(true);
+  //   }).catchError((error) {
+  //     print('[BackgroundGeolocation registerHeadlessTask] ‼️ $error');
+  //     completer.complete(false);
+  //   });
+  //   return completer.future as FutureOr<bool>;
+  // }
 
   static void _registerSubscription(
       StreamSubscription<dynamic> sub, Function callback) {
@@ -1726,35 +1727,35 @@ class BackgroundGeolocation {
 //    return await _methodChannel.invokeMethod('stopWatchPosition');
 //  }
 }
-
+/// Commented the code bellow for IOS only setup- Android implementation Removed
 /// Headless Callback Dispatcher
 ///
-@pragma('vm:entry-point')
-void _headlessCallbackDispatcher() {
-  WidgetsFlutterBinding.ensureInitialized();
-  const MethodChannel _headlessChannel =
-      MethodChannel("$_PLUGIN_PATH/headless", JSONMethodCodec());
+// @pragma('vm:entry-point')
+// void _headlessCallbackDispatcher() {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   const MethodChannel _headlessChannel =
+//       MethodChannel("$_PLUGIN_PATH/headless", JSONMethodCodec());
 
-  _headlessChannel.setMethodCallHandler((MethodCall call) async {
-    final args = call.arguments;
+//   _headlessChannel.setMethodCallHandler((MethodCall call) async {
+//     final args = call.arguments;
 
-    // Run the headless-task.
-    try {
-      final Function? callback = PluginUtilities.getCallbackFromHandle(
-          CallbackHandle.fromRawHandle(args['callbackId']));
-      if (callback == null) {
-        print(
-            '[BackgroundGeolocation _headlessCallbackDispatcher] ERROR: Failed to get callback from handle: $args');
-        return;
-      }
-      callback(HeadlessEvent(args['event'], args['params']));
-    } catch (e, stacktrace) {
-      print(
-          '[BackgroundGeolocation _headlessCallbackDispather] ‼️ Callback error: ' +
-              e.toString());
-      print(stacktrace);
-    }
-  });
-  // Signal to native side that the client dispatcher is ready to receive events.
-  _headlessChannel.invokeMethod('initialized');
-}
+//     // Run the headless-task.
+//     try {
+//       final Function? callback = PluginUtilities.getCallbackFromHandle(
+//           CallbackHandle.fromRawHandle(args['callbackId']));
+//       if (callback == null) {
+//         print(
+//             '[BackgroundGeolocation _headlessCallbackDispatcher] ERROR: Failed to get callback from handle: $args');
+//         return;
+//       }
+//       callback(HeadlessEvent(args['event'], args['params']));
+//     } catch (e, stacktrace) {
+//       print(
+//           '[BackgroundGeolocation _headlessCallbackDispather] ‼️ Callback error: ' +
+//               e.toString());
+//       print(stacktrace);
+//     }
+//   });
+//   // Signal to native side that the client dispatcher is ready to receive events.
+//   _headlessChannel.invokeMethod('initialized');
+// }

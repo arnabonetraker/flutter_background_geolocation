@@ -9,8 +9,6 @@ packages
 pubspec.lock
 build/
 ios/.generated
-.gradle
-example/android/key.properties
 doc/
 tmp/
 transistor_logback.db

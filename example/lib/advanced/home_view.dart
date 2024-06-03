@@ -152,7 +152,7 @@ class HomeViewState extends State<HomeView> with TickerProviderStateMixin<HomeVi
         // Application options
         stopOnTerminate: false,
         startOnBoot: true,
-        enableHeadless: true,
+        // enableHeadless: true,
         heartbeatInterval: 60
     )).then((bg.State state) async {
       print('[ready] ${state.toMap()}');
